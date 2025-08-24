@@ -37,31 +37,6 @@ Interactive dashboards are created in **Tableau** for insights.
 ## Project Structure
 <img width="382" height="486" alt="image" src="https://github.com/user-attachments/assets/03813140-6583-4be6-881a-5fbd686703f5" />
 
-
-
-Insurance_app/
-│
-├── Insurance_app_flask/ # Flask App
-│ ├── templates/
-│ │ ├── index.html # HTML UI
-│ ├── static/ # CSS/JS (optional)
-│ ├── app.py # Flask main script
-│ ├── insurance_model.pkl # Trained ML model
-│ └── requirements.txt # Dependencies
-│
-├── Insurance_app_streamlit/
-│ ├── app.py # Streamlit app
-│ ├── insurance_model.pkl
-│
-├── notebooks/
-│ └── insurance_cost_analysis.ipynb # EDA and ML modeling
-│
-├── tableau_dashboard/
-│ └── dashboard.twbx # Tableau workbook
-│
-└── README.md
-
-
 ---
 
 ## Tech Stack
