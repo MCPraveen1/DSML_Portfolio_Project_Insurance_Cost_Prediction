@@ -1,0 +1,111 @@
+# index.html (Bootstrap UI for Flask)
+# Save this in templates/index.html:
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Insurance Premium Predictor</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+    <div class="container mt-5">
+        <div class="card shadow p-4">
+            <h2 class="text-center mb-4">🏥 Insurance Premium Prediction</h2>
+            <form action="/predict" method="post">
+
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label>Age:</label>
+                        <input type="number" name="age" class="form-control" required>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label>Diabetes:</label>
+                        <select name="diabetes" class="form-control">
+                            <option>Yes</option>
+                            <option>No</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label>Blood Pressure Problems:</label>
+                        <select name="bp" class="form-control">
+                            <option>Yes</option>
+                            <option>No</option>
+                        </select>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label>Any Transplants:</label>
+                        <select name="transplants" class="form-control">
+                            <option>Yes</option>
+                            <option>No</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label>Any Chronic Diseases:</label>
+                        <select name="chronic" class="form-control">
+                            <option>Yes</option>
+                            <option>No</option>
+                        </select>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label>Height (cm):</label>
+                        <input type="number" name="height" class="form-control" required>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label>Weight (kg):</label>
+                        <input type="number" name="weight" class="form-control" required>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label>Known Allergies:</label>
+                        <select name="allergies" class="form-control">
+                            <option>Yes</option>
+                            <option>No</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label>History of Cancer in Family:</label>
+                        <select name="cancer_history" class="form-control">
+                            <option>Yes</option>
+                            <option>No</option>
+                        </select>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label>Number of Major Surgeries:</label>
+                        <input type="number" name="surgeries" class="form-control" required>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label>BMI:</label>
+                        <input type="number" step="0.1" name="bmi" class="form-control" required>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label>Risk Score:</label>
+                        <input type="number" name="risk_score" class="form-control" required>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn btn-primary w-100">Predict</button>
+            </form>
+
+            {% if prediction_text %}
+                <div class="alert alert-info mt-4">{{ prediction_text }}</div>
+            {% endif %}
+        </div>
+    </div>
+</body>
+</html>
