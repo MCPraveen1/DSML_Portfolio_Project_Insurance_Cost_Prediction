@@ -35,6 +35,10 @@ Interactive dashboards are created in **Tableau** for insights.
 ---
 
 ## Project Structure
+<img width="382" height="486" alt="image" src="https://github.com/user-attachments/assets/03813140-6583-4be6-881a-5fbd686703f5" />
+
+
+
 Insurance_app/
 │
 ├── Insurance_app_flask/ # Flask App
