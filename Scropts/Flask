@@ -1,0 +1,57 @@
+# Flask app(app.py)
+
+from flask import Flask, render_template, request
+import joblib
+import pandas as pd
+
+app = Flask(__name__)
+
+# Load the model
+model = joblib.load("insurance_model.pkl")
+
+@app.route('/')
+def index():
+    return render_template('index.html')
+
+@app.route('/predict', methods=['POST'])
+def predict():
+    try:
+        # Fetch form data
+        age = int(request.form['age'])
+        diabetes = 1 if request.form['diabetes'] == 'Yes' else 0
+        bp = 1 if request.form['bp'] == 'Yes' else 0
+        transplants = 1 if request.form['transplants'] == 'Yes' else 0
+        chronic = 1 if request.form['chronic'] == 'Yes' else 0
+        height = float(request.form['height'])
+        weight = float(request.form['weight'])
+        allergies = 1 if request.form['allergies'] == 'Yes' else 0
+        cancer_history = 1 if request.form['cancer_history'] == 'Yes' else 0
+        surgeries = int(request.form['surgeries'])
+        bmi = float(request.form['bmi'])
+        risk_score = int(request.form['risk_score'])
+
+        # Prepare input data for model
+        input_data = pd.DataFrame([{
+            "Age": age,
+            "Diabetes": diabetes,
+            "BloodPressureProblems": bp,
+            "AnyTransplants": transplants,
+            "AnyChronicDiseases": chronic,
+            "Height": height,
+            "Weight": weight,
+            "KnownAllergies": allergies,
+            "HistoryOfCancerInFamily": cancer_history,
+            "NumberOfMajorSurgeries": surgeries,
+            "BMI": bmi,
+            "Risk_Score": risk_score
+        }])
+
+        # Predict
+        prediction = model.predict(input_data)[0]
+        return render_template('index.html', prediction_text=f"Predicted Premium: ₹ {prediction:,.2f}")
+
+    except Exception as e:
+        return render_template('index.html', prediction_text=f"Error: {str(e)}")
+
+if __name__ == '__main__':
+    app.run(debug=True)
